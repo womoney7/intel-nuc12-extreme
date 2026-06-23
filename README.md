@@ -6,13 +6,15 @@
 
 ### OpenCore
 
-[OpenCore 1.0.1](https://github.com/acidanthera/OpenCorePkg)
+[OpenCore 1.0.7](https://github.com/acidanthera/OpenCorePkg)
 
 ### OS Version Tested
 
 - macOS Monterey 12.x
 - macOS Ventura  13.x
 - macOS Sonoma   14.x
+- macOS Sequoia  15.x
+- macOS Tahoe    26.x
 
 ### Hardware
 
@@ -22,7 +24,7 @@
 - RAM: Lenovo 16GB（8GB*2） DDR4 3200Mhz
 - SSD: KINGBANK KP230
 - iGPU: Intel UHD Graphic 770 (Only work in Windows)
-- GPU: PowerColor AMD Radeon RX6600XT 8GB GDDR5
+- GPU: AMD Radeon RX 6700 XT
 - Audio: Intel Alder Point-S PCH - HD Audio
 - Ethernet Card: Intel L225-LM
 - Ethernet Card: Marvell AQtion 10Gbit
