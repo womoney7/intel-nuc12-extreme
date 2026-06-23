@@ -261,7 +261,7 @@
                     <key>Comment</key>
                     <string>V1.7.0</string>
                     <key>Enabled</key>
-                    <true/>
+                    <false/>
                     <key>ExecutablePath</key>
                     <string>Contents/MacOS/WhateverGreen</string>
                     <key>MaxKernel</key>
@@ -775,7 +775,7 @@
                     <key>boot-args</key>
                     <string>-wegnoigpu</string>
                     <key>csr-active-config</key>
-                    <data>AAAAAA==</data>
+                    <data>AwoAAA==</data>
                     <key>prev-lang:kbd</key>
                     <string>zh-Hans:252</string>
                     <key>run-efi-updater</key>
