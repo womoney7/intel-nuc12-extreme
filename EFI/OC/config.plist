@@ -98,6 +98,8 @@
                 <false/>
                 <key>AvoidRuntimeDefrag</key>
                 <true/>
+                <key>ClearTaskSwitchBit</key>
+                <false/>
                 <key>DevirtualiseMmio</key>
                 <true/>
                 <key>DisableSingleUser</key>
@@ -154,6 +156,17 @@
                     <string>Ethernet controller</string>
                     <key>model</key>
                     <string>AQC113C NBase-T/IEEE 802.3bz Ethernet Controller</string>
+                </dict>
+                <key>PciRoot(0x0)/Pci(0x14,0x3)</key>
+                <dict>
+                    <key>AAPL,slot-name</key>
+                    <string>Internal@0,14,3</string>
+                    <key>IOName</key>
+                    <string>pci14e4,43a0</string>
+                    <key>device_type</key>
+                    <string>Network controller</string>
+                    <key>model</key>
+                    <string>Intel Wi-Fi 6E AX211 spoofed as AirPort</string>
                 </dict>
             </dict>
             <key>Delete</key>
@@ -421,7 +434,7 @@
                     <key>BundlePath</key>
                     <string>USBToolBox.kext</string>
                     <key>Comment</key>
-                    <string>V1.0.1</string>
+                    <string>V1.2.0</string>
                     <key>Enabled</key>
                     <true/>
                     <key>ExecutablePath</key>
@@ -455,9 +468,45 @@
                     <key>Arch</key>
                     <string>Any</string>
                     <key>BundlePath</key>
+                    <string>IOSkywalkFamily.kext</string>
+                    <key>Comment</key>
+                    <string>V1.0 | OCLP Modern Wi-Fi IOSkywalkFamily replacement</string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/IOSkywalkFamily</string>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>23.0.0</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
+                    <string>IO80211FamilyLegacy.kext</string>
+                    <key>Comment</key>
+                    <string>V12.0 | OCLP Modern Wi-Fi IO80211FamilyLegacy dependency</string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>ExecutablePath</key>
+                    <string>Contents/MacOS/IO80211FamilyLegacy</string>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>23.0.0</string>
+                    <key>PlistPath</key>
+                    <string>Contents/Info.plist</string>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>BundlePath</key>
                     <string>AirportItlwm.kext</string>
                     <key>Comment</key>
-                    <string>V2.3.0</string>
+                    <string>V2.3.0 Ventura | OCLP Intel Wi-Fi Tahoe spoof</string>
                     <key>Enabled</key>
                     <true/>
                     <key>ExecutablePath</key>
@@ -579,7 +628,24 @@
                 </dict>
             </array>
             <key>Block</key>
-            <array/>
+            <array>
+                <dict>
+                    <key>Arch</key>
+                    <string>Any</string>
+                    <key>Comment</key>
+                    <string>OCLP Modern Wi-Fi - block native IOSkywalkFamily</string>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Identifier</key>
+                    <string>com.apple.iokit.IOSkywalkFamily</string>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>23.0.0</string>
+                    <key>Strategy</key>
+                    <string>Exclude</string>
+                </dict>
+            </array>
             <key>Emulate</key>
             <dict>
                 <key>Cpuid1Data</key>
@@ -596,7 +662,278 @@
             <key>Force</key>
             <array/>
             <key>Patch</key>
-            <array/>
+            <array>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion13alloc_rx_ringEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix alloc_dma_buffer</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>TInvQbgDAAAA</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>22.99.99</string>
+                    <key>MinKernel</key>
+                    <string>21.0.0</string>
+                    <key>Replace</key>
+                    <data>TInvQbgTAAAA</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion13alloc_rx_ringEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix alloc_dma_buffer (Sonoma)</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>SInfQbgDAAAA</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>23.0.0</string>
+                    <key>Replace</key>
+                    <data>SInfQbgTAAAA</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion13alloc_rx_ringEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix IOBufferMemoryDescriptor::withOptions</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>ugAQAAC/AQAAAA==</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>21.0.0</string>
+                    <key>Replace</key>
+                    <data>ugAQAAC/EQAAAA==</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion13alloc_tx_ringEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix alloc_dma_buffer</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>TInnQbgDAAAA</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>22.99.99</string>
+                    <key>MinKernel</key>
+                    <string>21.0.0</string>
+                    <key>Replace</key>
+                    <data>TInnQbgTAAAA</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion13alloc_tx_ringEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix alloc_dma_buffer (Sonoma)</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>SInfQbgDAAAA</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>23.0.0</string>
+                    <key>Replace</key>
+                    <data>SInfQbgTAAAA</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion13alloc_tx_ringEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix IOBufferMemoryDescriptor::withOptions</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>ugAQAAC/AgAAAA==</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>21.0.0</string>
+                    <key>Replace</key>
+                    <data>ugAQAAC/EgAAAA==</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion14allocAvbPacketEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix allocAvbPacket</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>TIn3QbgDAAAA</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>22.99.99</string>
+                    <key>MinKernel</key>
+                    <string>21.0.0</string>
+                    <key>Replace</key>
+                    <data>TIn3QbgTAAAA</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion14allocAvbPacketEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix allocAvbPacket (Sonoma)</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>SInfQbgDAAAA</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>23.0.0</string>
+                    <key>Replace</key>
+                    <data>SInfQbgTAAAA</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+                <dict>
+                    <key>Arch</key>
+                    <string>x86_64</string>
+                    <key>Base</key>
+                    <string>__ZN27AppleEthernetAquantiaAqtion14allocPtpPacketEj</string>
+                    <key>Comment</key>
+                    <string>CaseySJ - Fix allocPtpPacket</string>
+                    <key>Count</key>
+                    <integer>1</integer>
+                    <key>Enabled</key>
+                    <true/>
+                    <key>Find</key>
+                    <data>ugACAAC/AwAAAA==</data>
+                    <key>Identifier</key>
+                    <string>com.apple.driver.AppleEthernetAquantiaAqtion</string>
+                    <key>Limit</key>
+                    <integer>0</integer>
+                    <key>Mask</key>
+                    <data></data>
+                    <key>MaxKernel</key>
+                    <string>25.99.99</string>
+                    <key>MinKernel</key>
+                    <string>21.0.0</string>
+                    <key>Replace</key>
+                    <data>ugACAAC/EwAAAA==</data>
+                    <key>ReplaceMask</key>
+                    <data></data>
+                    <key>Skip</key>
+                    <integer>0</integer>
+                </dict>
+            </array>
             <key>Quirks</key>
             <dict>
                 <key>AppleCpuPmCfgLock</key>
@@ -795,6 +1132,8 @@
                 <dict>
                     <key>revcpu</key>
                     <integer>1</integer>
+                    <key>revcpuname</key>
+                    <string>Intel Core i9-12900</string>
                     <key>rtc-blacklist</key>
                     <data></data>
                 </dict>
@@ -809,9 +1148,9 @@
                     <key>bluetoothInternalControllerInfo</key>
                     <data>AAAAAAAAAAAAAAAAAAA=</data>
                     <key>boot-args</key>
-                    <string>-wegnoigpu -amfipassbeta</string>
+                    <string>-wegnoigpu -amfipassbeta revpatch=sbvmm,cpuname -ibtcompatbeta -ctrsmt</string>
                     <key>csr-active-config</key>
-                    <data>AwoAAA==</data>
+                    <data>/w8AAA==</data>
                     <key>prev-lang:kbd</key>
                     <string>zh-Hans:252</string>
                     <key>run-efi-updater</key>
@@ -828,10 +1167,12 @@
                 <array>
                     <string>rtc-blacklist</string>
                     <string>revcpu</string>
+                    <string>revcpuname</string>
                 </array>
                 <key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
                 <array>
                     <string>boot-args</string>
+                    <string>csr-active-config</string>
                     <string>ForceDisplayRotationInEFI</string>
                 </array>
             </dict>
@@ -1044,6 +1385,8 @@
                     <string>ToggleSipEntry.efi</string>
                 </dict>
             </array>
+            <key>Unload</key>
+            <array/>
             <key>Input</key>
             <dict>
                 <key>KeyFiltering</key>

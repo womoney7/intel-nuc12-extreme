@@ -4,22 +4,18 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Resources/README.md</key>
+		<key>version.plist</key>
 		<data>
-		JxHzVBzXupX/OkGpbonGhTyzCUQ=
+		qIixle+W2C/+sBp1SInmYObzhV4=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Resources/README.md</key>
+		<key>version.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			JxHzVBzXupX/OkGpbonGhTyzCUQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			5AviWKbmTIrguruUpJFgZ9YJJm/pLIQ6tnq53+GkQN0=
+			ji2WfnRNNWU/8pJpqBz/wrCq9bjOZa7wiGteYMeYsOE=
 			</data>
 		</dict>
 	</dict>
